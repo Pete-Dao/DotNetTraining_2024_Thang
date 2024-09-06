@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Entities
+namespace BookStoreProject.Entities
 {
-    public class Book
+     public class Book
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -28,8 +27,8 @@ namespace BookStore.Entities
 
         public override string ToString()
         {
-            return $"ID: {Id}, Title: {Title}, Author: {Author}, Price: {Price}, " +
-                   $"Publication Year: {PublicationYear}, Stock: {QuantityInStock}";
+            return $"ID: {Id}, Title: {Title}, Author: {Author}, Price: ${Price}, " +
+                    $"Publication Year: {PublicationYear}, Stock: {QuantityInStock}";
         }
     }
 }

@@ -1,12 +1,12 @@
-﻿using BookStore.Entities;
+﻿using BookStoreProject.Entities;
 
-namespace BookStore
+namespace BookStoreProject
 {
-    internal class Program
+    public class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-            Libary library = new Libary();
+            Library library = new Library();
 
             // Add books to the library
             library.AddBook(new Book(1, "C# Programming", "John Doe", 29.99m, 2018, 10));
@@ -37,8 +37,6 @@ namespace BookStore
 
             // Generate report
             library.GenerateReport();
-
         }
     }
 }
-       

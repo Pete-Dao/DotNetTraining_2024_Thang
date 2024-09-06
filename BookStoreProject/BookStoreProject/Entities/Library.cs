@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Entities
+namespace BookStoreProject.Entities
 {
-    public class Libary
+    public class Library
     {
-        private List<Book> books;
+        public List<Book> books;
 
-        public Libary()
+        public Library()
         {
             books = new List<Book>();
         }
@@ -23,10 +23,10 @@ namespace BookStore.Entities
         }
 
         // Remove a book by its ID
-        public void RemoveBookByID(int id)
+        public void RemoveBookById(int id)
         {
             var bookToRemove = books.FirstOrDefault(b => b.Id == id);
-            if (bookToRemove != null)
+            if(bookToRemove != null)
             {
                 books.Remove(bookToRemove);
                 Console.WriteLine($"Book with ID {id} removed from the library.");
@@ -40,29 +40,31 @@ namespace BookStore.Entities
         // Display all books in the inventory
         public void DisplayBooks()
         {
-            if (books.Count == 0)
+            if(books.Count == 0)
             {
-                Console.WriteLine("No books in the library.");
+                Console.WriteLine("No books in the library");
                 return;
             }
 
-            Console.WriteLine("Books in the library:");
+            Console.WriteLine("Books in the library: ");
             foreach (var book in books)
             {
                 Console.WriteLine(book.ToString());
             }
         }
 
+
         // Get books by a specific author
-        public List<Book> GetBooksByAuthor(string author)
+        public List<Book> GetBooksbyAuthor(string author)
         {
-            var booksByAuthor = books.Where(b => b.Author == author).ToList();
-            if (booksByAuthor.Count == 0)
+            var findByAuthor = books.Where(b => b.Author == author).ToList();
+            if(findByAuthor.Count == 0)
             {
                 Console.WriteLine($"No books found by author {author}.");
             }
-            return booksByAuthor;
+            return findByAuthor;
         }
+
 
         // Check stock of all books
         public void CheckStock()
@@ -87,9 +89,9 @@ namespace BookStore.Entities
         }
 
         // Get count of EBooks using lambda expression
-        public int GetEBookCount()
+        public int GetEbookCount()
         {
-            return books.OfType<Ebook>().Count();
+            return books.OfType<EBook>().Count();
         }
 
         // Group books by publication year and count how many were published each year
@@ -113,6 +115,7 @@ namespace BookStore.Entities
             {
                 bookToUpdate.Price = newPrice;
                 Console.WriteLine($"Price of book with ID {id} updated to {newPrice:C}.");
+                Console.WriteLine($"Book ID {id} updated successfully.");
             }
             else
             {
@@ -123,21 +126,21 @@ namespace BookStore.Entities
         // Generate a library report
         public void GenerateReport()
         {
-            Console.WriteLine("Library Report:");
-            Console.WriteLine($"Total number of books: {books.Count}");
+            Console.WriteLine($"Total number of books: {books.Count()}");
 
-            decimal totalInventoryValue = books.Sum(b => b.Price * b.QuantityInStock);
+            var totalInventoryValue = books.Sum(b => b.Price * b.QuantityInStock);
             Console.WriteLine($"Total inventory value: {totalInventoryValue:C}");
 
-            var sortedBooks = books.OrderByDescending(b => b.Price).ToList();
-            Console.WriteLine("Books sorted by price (descending):");
-            foreach (var book in sortedBooks)
+            var sortedBook = books.OrderByDescending(b => b.Price).ToList();    
+            Console.WriteLine("Books sorted by price: ");
+            for(int i = 0; i < sortedBook.Count; i++) 
             {
-                Console.WriteLine($"\"{book.Title}\", Price: {book.Price:C}");
+                Console.WriteLine($"{i + 1}. \"{sortedBook[i].Title}\", \"{sortedBook[i].Price:c}\"");
             }
 
-            int booksPublishedAfter2000 = books.Count(b => b.PublicationYear > 2000);
-            Console.WriteLine($"Number of books published after the year 2000: {booksPublishedAfter2000}");
+            var bookPublishedAfter2000 = books.Where(b => b.PublicationYear > 2000).ToList();
+            Console.WriteLine($"Books published after 2000 : {bookPublishedAfter2000.Count()}");
+
         }
     }
 }

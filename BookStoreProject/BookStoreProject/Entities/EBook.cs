@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Entities
+namespace BookStoreProject.Entities
 {
-    public class Ebook : Book
+    public class EBook : Book
     {
-        private double Filesize {  get; set; }
+        private double Filesize { get; set; }
 
-        public Ebook(int id, string title, string author, decimal price, int publicationYear, int quantityInStock, double filesize) : base(id, title, author, price, publicationYear, quantityInStock)
+        public EBook(int id, string title, string author, decimal price, int publicationYear, int quantityInStock, double filesize) : base(id, title, author, price, publicationYear, quantityInStock)
         {
             Filesize = filesize;
         }

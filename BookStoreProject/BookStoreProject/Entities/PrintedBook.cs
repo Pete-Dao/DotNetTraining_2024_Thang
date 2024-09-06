@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Entities
+namespace BookStoreProject.Entities
 {
-    // Derived class PrintedBook
     public class PrintedBook : Book
     {
         private int Pagecount { get; set; }
