@@ -15,7 +15,7 @@ namespace BookStoreProject
             library.AddBook(new EBook(4, "Mastering C/C++#", "Alice", 49.99m, 2021, 6, 5.6));
             library.AddBook(new Book(5, "Mastering C#", "Max", 79.99m, 2081, 7));
             library.AddBook(new Book(6, "Mastering OOP", "Sakura", 89.99m, 2016, 9));
-
+            library.AddBook(new Book(7, "C# Programming", " John Doe ", 29.99m, 2018, 10));
 
 
             Console.WriteLine();
@@ -30,6 +30,11 @@ namespace BookStoreProject
 
             Console.WriteLine();
 
+            var bookByAuthor = library.GetBooksbyAuthor(" john doe ");
+            foreach ( var book in bookByAuthor)
+            {
+                Console.WriteLine(book.DisplayDetail());
+            }
             //Check EBook
             Console.WriteLine($"The number of EBook in the library: {library.GetEbookCount()}");
 
@@ -53,6 +58,9 @@ namespace BookStoreProject
 
             // Update book price
             library.UpdateBookPrice(1, 35.99m);
+
+            Console.WriteLine();
+            library.DisplayBooks();
 
             Console.WriteLine();
 
