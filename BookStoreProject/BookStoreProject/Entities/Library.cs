@@ -57,6 +57,7 @@ namespace BookStoreProject.Entities
         // Get books by a specific author
         public List<Book> GetBooksbyAuthor(string author)
         {
+            //Trim() de xoa blankSpace at start and end 
             var findByAuthor = books.Where(b => b.Author.Trim().Equals(author.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
             if(findByAuthor.Count == 0)
             {

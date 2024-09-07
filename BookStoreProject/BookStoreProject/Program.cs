@@ -17,6 +17,7 @@ namespace BookStoreProject
             library.AddBook(new Book(6, "Mastering OOP", "Sakura", 89.99m, 2016, 9));
             library.AddBook(new Book(7, "C# Programming", " John Doe ", 29.99m, 2018, 10));
 
+            Console.WriteLine(library.books.Count());
 
             Console.WriteLine();
             
