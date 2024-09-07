@@ -15,9 +15,10 @@ namespace BookStoreProject.Entities
             Filesize = filesize;
         }
 
-        public override string ToString()
+
+        public override string DisplayDetail()
         {
-            return base.ToString() + $", File Size: {Filesize} MB";
+            return base.DisplayDetail() + $", File Size: {Filesize} MB";
         }
     }
 }

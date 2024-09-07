@@ -25,7 +25,7 @@ namespace BookStoreProject.Entities
             QuantityInStock = quantityInStock;
         }
 
-        public override string ToString()
+        public virtual string DisplayDetail()
         {
             return $"ID: {Id}, Title: {Title}, Author: {Author}, Price: ${Price}, " +
                     $"Publication Year: {PublicationYear}, Stock: {QuantityInStock}";

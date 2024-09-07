@@ -10,13 +10,34 @@ namespace BookStoreProject
 
             // Add books to the library
             library.AddBook(new Book(1, "C# Programming", "John Doe", 29.99m, 2018, 10));
-            library.AddBook(new Book(2, "Effective LINQ", "Jane Smith", 39.99m, 2015, 4));
-            library.AddBook(new Book(3, "Mastering C#", "John Doe", 49.99m, 2021, 0));
+            library.AddBook(new EBook(2, "Effective LINQ", "Jane Smith", 39.99m, 2015, 4, 2.5));
+            library.AddBook(new Book(3, "Mastering Java#", "Jon De", 19.99m, 2021, 0));
+            library.AddBook(new EBook(4, "Mastering C/C++#", "Alice", 49.99m, 2021, 6, 5.6));
+            library.AddBook(new Book(5, "Mastering C#", "Max", 79.99m, 2081, 7));
+            library.AddBook(new Book(6, "Mastering OOP", "Sakura", 89.99m, 2016, 9));
+
+
 
             Console.WriteLine();
+            
+            // Show the library
+            library.DisplayBooks();
+
+            Console.WriteLine();    
 
             // Check stock
             library.CheckStock();
+
+            Console.WriteLine();
+
+            //Check EBook
+            Console.WriteLine($"The number of EBook in the library: {library.GetEbookCount()}");
+
+            Console.WriteLine();
+
+            //Check group by year 
+            Console.WriteLine("The report, showing how many books were published in each year: ");
+            library.GroupBooksByPublicationYear();
 
             Console.WriteLine();
 
@@ -25,7 +46,7 @@ namespace BookStoreProject
             Console.WriteLine("Most Expensive Books:");
             foreach (var book in mostExpensiveBooks)
             {
-                Console.WriteLine(book.ToString());
+                Console.WriteLine(book.DisplayDetail());
             }
 
             Console.WriteLine();

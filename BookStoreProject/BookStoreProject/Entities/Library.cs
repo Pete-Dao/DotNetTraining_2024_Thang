@@ -49,7 +49,7 @@ namespace BookStoreProject.Entities
             Console.WriteLine("Books in the library: ");
             foreach (var book in books)
             {
-                Console.WriteLine(book.ToString());
+                Console.WriteLine(book.DisplayDetail());
             }
         }
 
@@ -126,6 +126,7 @@ namespace BookStoreProject.Entities
         // Generate a library report
         public void GenerateReport()
         {
+            Console.WriteLine("The library report: ");
             Console.WriteLine($"Total number of books: {books.Count()}");
 
             var totalInventoryValue = books.Sum(b => b.Price * b.QuantityInStock);
