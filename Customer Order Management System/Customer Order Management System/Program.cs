@@ -15,7 +15,7 @@ namespace Customer_Order_Management_System
             var product4 = new Product(4, "Television", "Electronics", 500m, 20);
             var product5 = new Product(5, "Wireless mouse", "Electronics", 50m, 25);
             var product6 = new Product(6, "Wireless keyboard", "Electronics", 70m, 12);
-            var product7 = new Product(7, "Pen", "Education", 0m, 0);
+            var product7 = new Product(7, "Pen", "Education", 0m, 1);
 
             // Add product to the ProductDatabase to manage
             orderManager.AddProduct(product1);

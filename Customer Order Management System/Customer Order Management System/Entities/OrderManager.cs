@@ -135,13 +135,10 @@ namespace Customer_Order_Management_System.Entities
         public void GenerateSalesReport()
         {
             var totalRevenue = OrderDatabase.Sum(o => o.TotalAmount);
-            var topProduct = OrderDatabase
-                .SelectMany(o => o.Products)
-                .GroupBy(p => p.ID)
-                .OrderByDescending(g => g.Sum(p => p.StockQuantity))
-                .FirstOrDefault()
-                ?.Select(p => new { Name = p.Name, TotalQuantitySold = p.StockQuantity })
-                .FirstOrDefault();
+           
+            var topProduct = OrderDatabase.SelectMany(o => o.Products).GroupBy(p => p.ID).OrderByDescending(g=>g.Count()).FirstOrDefault();
+
+            var prodName = ProductDatabase.FirstOrDefault(o => o.ID == topProduct?.Key)?.Name;
 
             var preferredCustomerOrders = CustomerDatabase
                 .Where(c => c.IsPreferredCustomer)
@@ -154,7 +151,7 @@ namespace Customer_Order_Management_System.Entities
                 .Count();
 
             Console.WriteLine($"Total Revenue: {totalRevenue:C}");
-            Console.WriteLine($"Best-selling product: {topProduct?.Name}, Total Sold: {topProduct?.TotalQuantitySold}");
+            Console.WriteLine($"Best-selling product: {prodName}, Total Sold: {topProduct?.Count()}");
             Console.WriteLine("- Customer Groups: ");
             Console.WriteLine($" * Preferred Customers Orders: {preferredCustomerOrders} orders");
             Console.WriteLine($" * Regular Customers: {nonPreferredCustomerOrders} orders");
