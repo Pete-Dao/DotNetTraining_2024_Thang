@@ -26,7 +26,6 @@ namespace Customer_Order_Management_System.Entities
                 throw new Exception($"Duplicate Product ID: {product.ID} found!");
             }
             ProductDatabase.Add(product);
-            Console.WriteLine($"Added product: {product.Name}, Category: {product.Category}, Price: {product.Price:c}, Stock: {product.StockQuantity}");
         }
 
         public void AddCustomer(Customer customer)

@@ -44,12 +44,12 @@ namespace Customer_Order_Management_System
 
             var order1 = new Order(1, customer1.ID, DateTime.Parse("2024-09-01"));
             order1.AddProduct(product1);
-            order1.AddProduct(product4);
-            order1.AddProduct(product4);
-            order1.AddProduct(product6);
             order1.AddProduct(product2);
             order1.AddProduct(product3);
             order1.AddProduct(product3);
+            order1.AddProduct(product4);
+            order1.AddProduct(product4);
+            order1.AddProduct(product6);
             order1.CalculateTotalAmount();
 
             // Choose order for customer
@@ -69,10 +69,10 @@ namespace Customer_Order_Management_System
 
             var order3 = new Order(3, customer3.ID, DateTime.Parse("2024-01-02"));
             order3.AddProduct(product1);
-            order3.AddProduct(product6);
-            order3.AddProduct(product4);
             order3.AddProduct(product2);
             order3.AddProduct(product3);
+            order3.AddProduct(product4);
+            order3.AddProduct(product6);
             order3.AddProduct(product6);
             order3.CalculateTotalAmount();
 
