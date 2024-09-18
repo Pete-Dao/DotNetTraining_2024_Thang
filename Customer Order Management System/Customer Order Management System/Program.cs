@@ -155,20 +155,7 @@ namespace Customer_Order_Management_System
             //Applying a 10% discount to all preferred customers:
 
             Console.WriteLine("\nApplying Discount for Preferred Customers:");
-            orderManager.ApplyDiscounts(10m, c => c.IsPreferredCustomer);
-
-            //Show the updated orders
-
-            foreach (var allCustomer in orderManager.CustomerDatabase)
-            {
-                var findById = orderManager.GetOrdersByCustomer(allCustomer.ID);
-                foreach (var item in findById)
-                {
-                    Console.WriteLine($"Order for CustomerID: {item.OrderID}");
-                    Console.WriteLine(item.Displaydetail());
-                    Console.WriteLine();
-                }
-            }
+            orderManager.ApplyDiscounts(10m, c => c.IsPreferredCustomer == true);
 
             //Top 5 most frequently ordered products:
 

@@ -85,6 +85,14 @@ namespace Customer_Order_Management_System.Entities
         public void ApplyDiscounts(decimal discountPercentage, Func<Customer, bool> condition)
         {
             var eligibleCustomers = CustomerDatabase.Where(condition).ToList();
+
+            // Debugging: Display eligible customers
+            Console.WriteLine("\nEligible customers for discount:");
+            foreach (var customer in eligibleCustomers)
+            {
+                Console.WriteLine($"{customer.Name} (Preferred: {customer.IsPreferredCustomer})");
+            }
+            Console.WriteLine();
             foreach (var customer in eligibleCustomers)
             {
                 foreach (var order in customer.Orders)
@@ -92,9 +100,22 @@ namespace Customer_Order_Management_System.Entities
                     order.CalculateTotalAmount();
                     var discountAmount = order.TotalAmount * (discountPercentage / 100);
                     order.TotalAmount -= discountAmount;
+                    Console.WriteLine($"Disocunt applied to {customer.Name}'s order." +
+                        $" New Total Amount: {order.TotalAmount:c}");
+                }
+            }
+
+            Console.WriteLine("\nChecking non-preferred customers' order amounts:");
+            foreach (var customer in CustomerDatabase.Where(c => !c.IsPreferredCustomer))
+            {
+                foreach (var order in customer.Orders)
+                {
+                    order.CalculateTotalAmount();
+                    Console.WriteLine($"Non-preferred customer {customer.Name}'s order Total Amount: {order.TotalAmount:c}");
                 }
             }
         }
+
 
         public void GetTop5MostFrequentlyOrderedProducts()
         {
@@ -123,6 +144,10 @@ namespace Customer_Order_Management_System.Entities
         public List<Order> GetHighValueOrders(decimal minAmount)
         {
             return OrderDatabase.Where(o => o.TotalAmount > minAmount).ToList();
+            // var highValueOrders = (from order in OrderDatabase
+            //                        .Where order.TotalAmount > minAmount
+            //                        .Select order).ToList();
+            // return highValueOrders;
         }
 
         public Order GetFirstOrderByCustomerStartingWithA()
@@ -221,6 +246,13 @@ namespace Customer_Order_Management_System.Entities
             foreach (var customer in occasionalBuyers)
             {
                 Console.WriteLine($"- Customer ID: {customer.ID}, Name: \"{customer.Name}\"");
+            }
+
+            Console.WriteLine();
+
+            foreach (var customer in CustomerDatabase)
+            {
+                Console.WriteLine(customer.DisplayDetail());
             }
         }
     }
